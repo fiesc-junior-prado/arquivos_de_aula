@@ -1,6 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
-from app.api.routes import conversion
+from app.api.routes import conversion, visualization
+
 app = FastAPI(
     title="Minha Api Visão Computacional",
     description="Api para detecção de objetos ",
@@ -12,7 +13,8 @@ async def health():
 
 #adicionando rotas
 app.include_router(conversion.router)
-    
+app.include_router(visualization.router)
+
 if __name__ == "__main__":
     # Configurações de inicialização do servidor Uvicorn
     uvicorn.run(

@@ -3,7 +3,7 @@ from collections import defaultdict
 import io
 import zipfile
 
-def coco_to_yolo(coco_data: CocoDataset):
+def convert_coco_to_yolo(coco_data: CocoDataset):
 
     # mapeamento das imagens pelo id para fácil acesso
     images_map = {image.id: image for image in coco_data.images}

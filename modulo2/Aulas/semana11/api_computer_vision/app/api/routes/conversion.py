@@ -1,18 +1,18 @@
 from fastapi import APIRouter
 from app.models.schemas import CocoDataset
 from fastapi.responses import StreamingResponse
-from app.services.coco_to_yolo import coco_to_yolo
+from app.services.coco_to_yolo import convert_coco_to_yolo
 router = APIRouter(
     prefix="/conversion",
     tags=["conversion"]
 )
 
 @router.post("/coco-to-yolo", summary="Convert COCO to YOLO format")
-def convert_coco_to_yolo(payload: CocoDataset):
+def coco_to_yolo(payload: CocoDataset):
     """
     Endpoint to convert COCO format annotations to YOLO format
     """
-    zip_buffer = coco_to_yolo(payload)
+    zip_buffer = convert_coco_to_yolo(payload)
 
     return StreamingResponse(
         zip_buffer,
